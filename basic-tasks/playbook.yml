@@ -1,0 +1,23 @@
+---
+
+# Playbook with basic tasks that debug some variables in a loop.
+
+- hosts: local
+  vars:
+    test_var: TestVar
+    test_list:
+      - list item 1
+      - list item 2
+    test_dict:
+      dict_item_a: Dict Item A
+      dict_item_b: Dict Item B
+
+  tasks:
+    - name: Debug some variables.
+      debug:
+        var: item
+      loop:
+        - "{{ test_var }}"
+        - "{{ test_list }}"
+        - "{{ test_list | join('+')}}"
+        - "{{ test_dict }}"

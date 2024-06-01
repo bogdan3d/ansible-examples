@@ -1,0 +1,28 @@
+---
+
+# Filter the customers dictionary by name using the `filter_by_name_property_using_this_list`.
+
+- hosts: all
+  vars:
+    filter_by_name_property_using_this_list:
+      - customer1
+      - customer4
+
+    customers:
+      - name: customer1
+        value: Customer 1
+      - name: customer2
+        value: Customer 2
+      - name: customer3
+        value: Customer 3
+      - name: customer4
+        value: Customer 4
+
+  tasks:
+    - debug: msg="Debugging {{ item }}"
+      loop: "{{ customers }}"
+
+    - set_fact:
+        filtered_customers: "{{ customers|selectattr('name', 'in', filter_by_name_property_using_this_list)|list }}"
+
+    - debug: msg="Filtered customers{{ ":" }} {{ filtered_customers }}"
