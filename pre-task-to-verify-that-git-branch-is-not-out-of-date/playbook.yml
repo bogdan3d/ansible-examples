@@ -2,6 +2,8 @@
 
 # Have a developer that doesn't git pull from your git repository before executing a playbook? We all do!
 # This is a pre task that checks that git isn't behind. This playbook will execute without issue if you are up to date.
+# To test this and trigger the failure, roll your checkout back before execution:
+#   git reset --hard HEAD~1
 
 - hosts: local
 
