@@ -8,7 +8,7 @@ All provided playbooks will run in a local environment.
 
 | System  | Version |
 |---------|---------|
-| MacOS   | 14.4.1) |
+| MacOS   | 14.4.1  |
 | Python  | 3.11    |
 | Ansible | 2.9.9   |
 
