@@ -7,8 +7,6 @@
 
 - hosts: local
 
-  vars:
-
   pre_tasks:
     - name: Use git fetch and git status to check if current branch is up to date.
       raw: git fetch && git status | grep "^Your branch is behind"
@@ -16,8 +14,6 @@
       register: git_branch_is_behind
       failed_when: git_branch_is_behind.rc == 0
       changed_when: false
-      tags: always
-    - setup:
       tags: always
 
   tasks:

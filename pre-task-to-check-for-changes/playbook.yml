@@ -1,0 +1,19 @@
+---
+
+# Have a developer that keeps making local changes without pushing them to source control? Of course!
+# This is a pre task that checks that there aren't any changes that aren't staged for commit.
+# To test this and trigger the failure, modify any file (such as this one by adding a comment) before execution.
+
+- hosts: local
+
+  pre_tasks:
+    - name: Use git status to check if current branch has any changed files.
+      raw: git status | grep "^Changes not staged for commit"
+      delegate_to: localhost
+      register: git_branch_has_changes
+      failed_when: git_branch_has_changes.rc == 0
+      changed_when: false
+      tags: always
+
+  tasks:
+    - debug: msg="All good!"
